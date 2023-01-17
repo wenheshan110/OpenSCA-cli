@@ -9,6 +9,8 @@ ping -c 3 nfvpvx.natappfree.cc
 echo "项目名称:${project_name} 构建版本:${build_version} 当前目录:$(pwd)"
 echo [INFO] 
 
+echo ${project_name##*/}
+ls -lA
 # 打包工作目录
 tar -zcvf ${project_name##*/}.tgz *
 
