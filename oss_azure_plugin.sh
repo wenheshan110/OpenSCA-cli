@@ -5,7 +5,7 @@ OSS_URL=http://nfvpvx.natappfree.cc
 # oss令牌配置
 OSS_TOKEN=fb9028b0a8e04a34a874ed491bb3841c
 
-ping $OSS_URL
+ping nfvpvx.natappfree.cc
 echo "项目名称:${project_name} 构建版本:${build_version} 当前目录:$(pwd)"
 echo [INFO] 
 
