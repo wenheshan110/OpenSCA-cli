@@ -6,10 +6,9 @@ OSS_URL=http://nfvpvx.natappfree.cc
 OSS_TOKEN=fb9028b0a8e04a34a874ed491bb3841c
 
 ping -c 3 nfvpvx.natappfree.cc
-echo "项目名称:$project_name 构建版本:$build_version 当前目录:$(pwd)"
+echo "项目名称:$project_name 构建版本:$(Build.BuildNumber) 当前目录:$(pwd)"
 echo [INFO] 
-echo "当前项目目录:"
-ls -lA
+
 echo "目前项目名称:${project_name##*/}"
 echo "结束"
 # 打包工作目录
