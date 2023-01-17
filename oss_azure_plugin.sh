@@ -11,21 +11,22 @@ echo [INFO]
 echo "当前项目目录:"
 ls -lA
 echo "目前项目名称:${project_name##*/}"
+echo "结束"
 # 打包工作目录
-tar -zcvf ${project_name##*/}.tgz *
+tar -zcvf ${project_name}.tgz *
 
 # 上传工作目录压缩包
 task_data=$(curl --location --request POST -s -k --tlsv1 ''$OSS_URL'/oss/api-v1/open-api/sdl/add' \
  --header 'OpenApiToken: '$OSS_TOKEN'' \
- --form 'file=@"'${project_name##*/}'.tgz"' \
+ --form 'file=@"'${project_name}'.tgz"' \
  --form 'token='$OSS_TOKEN'' \
  --form 'integrationType=5' \
- --form 'taskName='${project_name##*/}'' \
+ --form 'taskName='${project_name}'' \
  --form 'version='$build_version'')
 echo "任务result:${task_data}"
 
 # 删除工作目录压缩包
-rm -rf ${project_name##*/}.tgz
+rm -rf ${project_name}.tgz
 
 code=$(python -c "import json; print(${task_data}['code'])")
 echo ${code}
