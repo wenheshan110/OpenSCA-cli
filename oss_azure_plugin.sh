@@ -1,31 +1,29 @@
 #!/bin/bash
 
 # oss地址配置
-OSS_URL=http://nfvpvx.natappfree.cc
+OSS_URL=http://kwchfe.natappfree.cc
 # oss令牌配置
 OSS_TOKEN=fb9028b0a8e04a34a874ed491bb3841c
 
-ping -c 3 nfvpvx.natappfree.cc
-echo "项目名称:$project_name 构建版本:$Build.BuildNumber 当前目录:$(pwd)"
+echo "项目名称:${project_name} 构建版本:${build_version} 当前目录:$(pwd)"
 echo [INFO] 
 
-echo "目前项目名称:${project_name##*/}"
-echo "结束"
 # 打包工作目录
-tar -zcvf $project_name.tgz *
+tar -zcvf ${project_name##*/}.tgz *
 
+echo ${project_name##*/}
 # 上传工作目录压缩包
 task_data=$(curl --location --request POST -s -k --tlsv1 ''$OSS_URL'/oss/api-v1/open-api/sdl/add' \
  --header 'OpenApiToken: '$OSS_TOKEN'' \
- --form 'file=@"'$project_name'.tgz"' \
+ --form 'file=@"'${project_name##*/}'.tgz"' \
  --form 'token='$OSS_TOKEN'' \
  --form 'integrationType=5' \
- --form 'taskName='$project_name'' \
+ --form 'taskName='${project_name##*/}'' \
  --form 'version='$build_version'')
 echo "任务result:${task_data}"
 
 # 删除工作目录压缩包
-rm -rf ${project_name}.tgz
+rm -rf ${project_name##*/}.tgz
 
 code=$(python -c "import json; print(${task_data}['code'])")
 echo ${code}
