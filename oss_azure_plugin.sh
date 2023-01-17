@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # oss地址配置
-OSS_URL= http://89f4hb.natappfree.cc
+OSS_URL= http://nfvpvx.natappfree.cc
 # oss令牌配置
 OSS_TOKEN=fb9028b0a8e04a34a874ed491bb3841c
 
